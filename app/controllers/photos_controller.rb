@@ -13,4 +13,14 @@ class PhotosController < ApplicationController
     render({ :template => "photo_templates/show.html.erb"})
   end
 
+  def destroy
+    the_id = params.fetch("toast_id")
+    matching_photos = Photo.where({ :id => the_id })
+    the_photo = matching_photos.at(0)
+
+    the_photo.destroy
+    
+    render({ :template => "photo_templates/destroy.html.erb"})
+  end
+
 end
